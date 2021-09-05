@@ -13,15 +13,17 @@ public class Duke {
         Border lines = new Border();
         System.out.println(lines.createLine() + "\n" + "Hello! I'm Duke\nWhat can I do for you?" + "\n" + lines.createLine());
         String input = sc.nextLine();
-        while (!input.equals("bye")){
-            if (input.equals("list"))
+        while (!input.equals("bye"))
+            /*if (input.equals("list"))*/
             {
-                System.out.println(lines.createLine());
-                System.out.println(taskList.showTaskList());
+               /* System.out.println(lines.createLine());
+                System.out.println(taskList.showTaskList());*/
+                taskList.addTask(input);
+                input = sc.nextLine();
             }
-            taskList.addTask(input);
-            input = sc.nextLine();
-        }
+           /* taskList.addTask(input);
+            input = sc.nextLine();*/
+
         System.out.println(lines.createLine());
         System.out.println(String.format("%50s","Bye. Hope to see you again soon!") + "\n" + lines.createLine());
     }
