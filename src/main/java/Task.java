@@ -1,4 +1,5 @@
-public class Task {
+public abstract class Task
+{
     protected String taskDesc;
     protected boolean isDone;
 
@@ -19,9 +20,5 @@ public class Task {
         this.isDone = true;
     }
 
-    public String toString()
-    {
-        String results = "[" + this.getStatus() + "]" + " " + this.taskDesc;
-        return results;
-    }
+    public abstract String toString();
 }
