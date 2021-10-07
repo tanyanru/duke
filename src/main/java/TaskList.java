@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+
 public class TaskList
 {
-    //Assume there will be no more than 100 tasks
-    Task[] taskList = new Task[100];
+    ArrayList <Task> taskList = new ArrayList<> ();
+
     int taskNum = 0;
     Border lines = new Border();
 
@@ -11,7 +13,7 @@ public class TaskList
         switch (arr[0])
         {
             case "list":
-                System.out.println(showTaskList());
+                System.out.println(toString());
                 break;
 
             case "done":
@@ -21,14 +23,18 @@ public class TaskList
                     {
                         if (arr.length < 2)
                             throw new DukeException((lines.createLine()) + "\n Which tasks have u completed? \n" + (lines.createLine()));
-                        taskList[Integer.parseInt(arr[1]) - 1].markAsDone();
+                        taskList.get(Integer.parseInt(arr[1]) - 1).markAsDone();
                         System.out.println(lines.createLine());
                         System.out.println("Nice! I've marked this task as done:");
-                        System.out.println(taskList[Integer.parseInt(arr[1]) - 1].toString());
+                        System.out.println(taskList.get(Integer.parseInt(arr[1]) - 1).toString());
                         System.out.println(lines.createLine());
                     } catch (NullPointerException | IndexOutOfBoundsException e)
                     {
-                        throw new DukeException((lines.createLine()) + "\n Which tasks have u completed? \n" + (lines.createLine()));
+                        throw new DukeException((lines.createLine()) + "\n Index out of bounds. \n" + (lines.createLine()));
+                    }
+                    catch(NumberFormatException e)
+                    {
+                        throw new DukeException((lines.createLine()) + "\n Please enter the task number that you would like to delete.  \n" + (lines.createLine()));
                     }
                 } catch (DukeException e)
                 {
@@ -38,10 +44,39 @@ public class TaskList
                     break;
                 }
 
-            default:
+            case "delete":
+                try {
+                    try{
+                        if (arr.length < 2)
+                            throw new DukeException((lines.createLine()) + "\n Which tasks have u completed? \n" + (lines.createLine()));
+                        Task removeTask = taskList.get(Integer.parseInt(arr[1])-1);
+                        taskList.remove(removeTask);
+                        taskNum --;
+                        System.out.println(lines.createLine());
+                        System.out.println("Noted. I've removed this task: \n" + removeTask.toString());
+                        System.out.println("Now you have " + taskNum + " in the list.");
+                        System.out.println(lines.createLine());
+                    } catch (NullPointerException | IndexOutOfBoundsException e)
+                    {
+                        throw new DukeException (lines.createLine() + "\n Index out of bounds. \n" + (lines.createLine()));
+                    }
+                    catch(NumberFormatException e)
+                    {
+                        throw new DukeException((lines.createLine()) + "\n Please enter the task number that you would like to delete.  \n" + (lines.createLine()));
+                    }
+                } catch (DukeException e)
+            {
+                System.out.println(e.getMessage());
+            } finally
+            {
+                break;
+            }
+
+        default:
                 try {
                     Task newTask = track(arr);
-                    taskList[taskNum++] = newTask;
+                    taskList.add(newTask);
+                    taskNum ++;
                     System.out.println(lines.createLine());
                     System.out.println("Got it. I've added this task: " + "\n" + newTask.toString());
                     System.out.println("Now you have " + taskNum + " task(s) in the list." + "\n" + lines.createLine());
@@ -89,39 +124,15 @@ public class TaskList
         }
     }
 
-    public String showTaskList()
-    {
-        String output = lines.createLine() + "\n" + "Here are the tasks in your list:" + "\n";
-        for (int idx = 0; idx <= taskNum; idx ++)
-        {
-            Task task = taskList[idx];
-            if (task==null)
-            {
-                break;
-            }
-            else
-            {
-                output += ((idx + 1) + "." + task.toString() + "\n");
-            }
-        }
-        return output + lines.createLine();
-    }
-
     public String toString()
     {
-        String output = lines.createLine() + "\n" + "Here are the tasks in your list: \n";
-        for (int index = 0; index <= taskNum; index ++)
+        String output = lines.createLine() + "\n" + "Here are the tasks in your list:" + "\n";
+        for (int idx = 0; idx < taskNum; idx ++)
         {
-            Task task = taskList[index];
-            if (task == null)
-            {
-                break;
-            } else
-            {
-                output += ((index + 1) + "." + task.toString() + "\n");
-            }
+            Task task = taskList.get(idx);
+            output += ((idx + 1) + "." + task.toString() + "\n");
         }
-        return output + lines.createLine() + "\n";
+        return output + lines.createLine();
     }
 }
 
