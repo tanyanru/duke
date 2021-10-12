@@ -6,6 +6,7 @@ public class TaskList
 
     int taskNum = 0;
     Border lines = new Border();
+    String filePath = "data/duke.txt";
 
     public void addTask(String task) {
         String[] arr = task.split(" ", 2);
@@ -23,6 +24,7 @@ public class TaskList
                             if (arr.length < 2)
                                 throw new DukeException((lines.createLine()) + "\n Which tasks have u completed? \n" + (lines.createLine()));
                             taskList.get(Integer.parseInt(arr[1]) - 1).markAsDone();
+                            FileWriterClass.writeFile(filePath,taskList.toString());
                             System.out.println(lines.createLine());
                             System.out.println("Nice! I've marked this task as done:");
                             System.out.println(taskList.get(Integer.parseInt(arr[1]) - 1).toString());
@@ -44,6 +46,7 @@ public class TaskList
                                 throw new DukeException((lines.createLine()) + "\n Which tasks have u completed? \n" + (lines.createLine()));
                             Task removeTask = taskList.get(Integer.parseInt(arr[1]) - 1);
                             taskList.remove(removeTask);
+                            FileWriterClass.writeFile(filePath, taskList.toString());
                             taskNum--;
                             System.out.println(lines.createLine());
                             System.out.println("Noted. I've removed this task: \n" + removeTask.toString());
@@ -64,6 +67,7 @@ public class TaskList
                     try {
                         Task newTask = track(activity, arr);
                         taskList.add(newTask);
+                        FileWriterClass.writeFile(filePath, taskList.toString());
                         taskNum++;
                         System.out.println(lines.createLine());
                         System.out.println("Got it. I've added this task: " + "\n" + newTask.toString());
