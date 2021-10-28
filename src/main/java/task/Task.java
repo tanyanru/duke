@@ -12,6 +12,14 @@ public abstract class Task
         this.deleted = false;
     }
 
+    public boolean findWord(String keyword) {
+        if (taskDesc.indexOf(keyword) == -1){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public String getStatus() {
         //tick if done, else cross
         return (isDone ? "\u2713" : "\u2718");

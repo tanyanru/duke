@@ -6,7 +6,12 @@ import task.TaskList;
 import ui.Ui;
 
 public class ExitCommand extends Command {
-    public boolean isExit(){
+
+    public ExitCommand() {
+        this.type = FullCommand.BYE;
+    }
+
+    public boolean isExit() {
         return true;
     }
 

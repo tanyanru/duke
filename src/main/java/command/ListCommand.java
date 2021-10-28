@@ -6,13 +6,19 @@ import task.TaskList;
 import ui.Ui;
 
 public class ListCommand extends Command {
-    public boolean isExit(){
+    int index;
+
+    public ListCommand() {
+        super.type = FullCommand.LIST;
+    }
+
+    public boolean isExit() {
         return false;
     }
-    int index;
+
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            if (index == -1){
+            if (index == -1) {
                 throw new IndexOutOfBoundsException();
             }
             ui.readList(tasks);
