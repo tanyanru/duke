@@ -4,21 +4,18 @@ public abstract class Task
     protected boolean isDone;
     protected boolean deleted;
 
-    public Task(String taskDesc)
-    {
+    public Task(String taskDesc) {
         this.taskDesc = taskDesc;
         this.isDone = false;
         this.deleted = false;
     }
 
-    public String getStatus()
-    {
+    public String getStatus() {
         //tick if done, else cross
         return (isDone ? "\u2713" : "\u2718");
     }
 
-    public void markAsDone()
-    {
+    public void markAsDone() {
         this.isDone = true;
     }
 
