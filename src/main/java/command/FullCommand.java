@@ -9,7 +9,8 @@ public enum FullCommand {
     DEADLINE ("deadline"),
     DONE ("done"),
     DELETE ("delete"),
-    BYE("bye");
+    BYE("bye"),
+    FIND("find");
 
     private String activityName;
 

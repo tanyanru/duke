@@ -12,7 +12,7 @@ public class TaskList
     public int taskNum;
     public boolean isFirst;
 
-    public TaskList(Storage storage){
+    public TaskList(Storage storage) {
         try {
             this.taskList = storage.getSchedule();
             taskNum = taskList.size();
@@ -26,8 +26,8 @@ public class TaskList
         }
     }
 
-    public TaskList(){
-        this.taskList = taskList;
+    public TaskList() {
+        this.taskList = new ArrayList<Task>();
         taskNum = taskList.size();
         if (taskNum == 0){
             isFirst = true;
@@ -38,7 +38,17 @@ public class TaskList
     }
 
 
-    public Task getTask(int index){
+    public TaskList(ArrayList<Task> schedule) {
+        this.taskList = schedule;
+        taskNum = taskList.size();
+        if (taskNum == 0) {
+            isFirst = true;
+        } else {
+            isFirst = false;
+        }
+    }
+
+    public Task getTask(int index) {
         return taskList.get(index);
     }
 
@@ -62,7 +72,7 @@ public class TaskList
         return removeTask;
     }
 
-    public ArrayList<Task> getList(){
+    public ArrayList<Task> getList() {
         return taskList;
     }
 

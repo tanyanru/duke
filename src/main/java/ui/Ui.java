@@ -69,4 +69,10 @@ public class Ui {
         System.out.println("Loading Error!");
         showLine();
     }
+
+    public void showMatches(TaskList tasks) {
+        System.out.println("Here are the matching task(s) in your list: ");
+        System.out.println(tasks);
+        showLine();
+    }
 }

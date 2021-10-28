@@ -15,6 +15,7 @@ public class EditCommand extends Command {
 
     public EditCommand(int index){
         this.index = index;
+        super.type = FullCommand.DONE;
     }
 
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

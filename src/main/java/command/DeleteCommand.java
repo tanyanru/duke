@@ -11,6 +11,7 @@ public class DeleteCommand extends Command {
 
     public DeleteCommand(int index){
         this.index = index;
+        super.type = FullCommand.DELETE;
     }
 
     public boolean isExit(){
