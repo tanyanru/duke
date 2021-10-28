@@ -3,12 +3,75 @@ import java.util.ArrayList;
 public class TaskList
 {
     ArrayList <Task> taskList = new ArrayList<> ();
+    public int taskNum;
+    public boolean isFirst;
 
-    int taskNum = 0;
-    Border lines = new Border();
-    String filePath = "data/duke.txt";
+    public TaskList(Storage storage){
+        try {
+            this.taskList = storage.getSchedule();
+            taskNum = taskList.size();
+            if (taskNum == 0){
+                isFirst = true;
+            } else {
+                isFirst = false;
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 
-    public void addTask(String task) {
+    public TaskList(){
+        this.taskList = taskList;
+        taskNum = taskList.size();
+        if (taskNum == 0){
+            isFirst = true;
+        } else {
+            isFirst = false;
+        }
+        System.out.println(taskNum);
+    }
+
+
+    public Task getTask(int index){
+        return taskList.get(index);
+    }
+
+    public Task complete(int index)
+            throws NullPointerException, IndexOutOfBoundsException, NumberFormatException, DukeException{
+        Task completedTask = taskList.get(index);
+        completedTask.markAsDone();
+        return completedTask;
+    }
+
+    public void addTask(Task task) throws DukeException{
+        taskList.add(task);
+        taskNum++;
+    }
+
+    public Task remove(int index)
+            throws NullPointerException, IndexOutOfBoundsException, NumberFormatException, DukeException{
+        Task removeTask = taskList.get(index);
+        taskList.remove(index);
+        taskNum--;
+        return removeTask;
+    }
+
+    public ArrayList<Task> getList(){
+        return taskList;
+    }
+
+    public String toString() {
+        String output = "";
+        for (int idx = 0; idx < taskNum; idx ++)
+        {
+            Task task = taskList.get(idx);
+            output += ((idx + 1) + "." + task.toString() + "\n");
+        }
+        return output.substring(0, output.length() - 1);
+    }
+}
+
+    /*public void addTask(String task) {
         String[] arr = task.split(" ", 2);
 
         try {
@@ -111,17 +174,6 @@ public class TaskList
         {
             throw new DukeException((lines.createLine()) + "\n The description of a " + taskType + " cannot be empty.\n" + (lines.createLine()));
         }
-    }
+    }*/
 
-    public String toString()
-    {
-        String output = lines.createLine() + "\n" + "Here are the tasks in your list:" + "\n";
-        for (int idx = 0; idx < taskNum; idx ++)
-        {
-            Task task = taskList.get(idx);
-            output += ((idx + 1) + "." + task.toString() + "\n");
-        }
-        return output + lines.createLine();
-    }
-}
 

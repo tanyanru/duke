@@ -1,21 +1,42 @@
 import java.util.Scanner;
 
 public class Duke {
+
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
+
+    public Duke(String filePath) {
+        ui = new Ui();
+        try {
+            storage = new Storage(filePath);
+            tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
+
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine(); // show the divider line ("_______")
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showError(e.getMessage());
+            }
+        }
+        ui.showGoodbye();
+    }
+
     public static void main(String[] args)
     {
-        TaskList taskList = new TaskList();
-        Scanner sc = new Scanner(System.in);
-        Border lines = new Border();
-        System.out.println(lines.createLine() + "\n" + "Hello! I'm Duke\nWhat can I do for you?" + "\n" + lines.createLine());
-        String input = sc.nextLine();
-        while (!input.equals("bye"))
-            {
-                taskList.addTask(input);
-                input = sc.nextLine();
-            }
-
-        System.out.println(lines.createLine());
-        System.out.println("Bye. Hope to see you again soon!" + "\n" + lines.createLine());
+        new Duke("data/tasks.txt").run();
     }
 }
 

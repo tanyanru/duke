@@ -6,34 +6,46 @@ public class DateTime {
     private LocalTime endDateTime;
     private LocalDateTime startDateTime;
     private String displayDateTime;
-    private static DateTimeFormatter getDay = DateTimeFormatter.ofPattern("dd");
-    private static DateTimeFormatter getTime = DateTimeFormatter.ofPattern("HH:mm");
-    private static DateTimeFormatter getMonth= DateTimeFormatter.ofPattern("MMM");
+    private static DateTimeFormatter getTime = DateTimeFormatter.ofPattern("HHmm");
+    private static DateTimeFormatter getStartDateTime = DateTimeFormatter.ofPattern("d/MM/yyyy HHmm");
 
     public static DateTime setDeadline(String dateTime) {
         DateTime deadlineDateTime = new DateTime();
-        DateTimeFormatter toFormat = DateTimeFormatter.ofPattern("d/MM/yyyy HHmm");
-        deadlineDateTime.startDateTime = LocalDateTime.parse(dateTime, toFormat);
-        deadlineDateTime.displayDateTime = getDayOfMonth(deadlineDateTime.startDateTime.format(getDay)) + " of " + deadlineDateTime.startDateTime.format(getMonth)
-                + ", " + deadlineDateTime.startDateTime.format(getTime);
+        deadlineDateTime.startDateTime = LocalDateTime.parse(dateTime, getStartDateTime);
+        deadlineDateTime.displayDateTime = deadlineDateTime.startDateTime.format(getStartDateTime);
+        return deadlineDateTime;
+    }
 
+    public static DateTime readDeadLine(String dateTime){
+        DateTime deadlineDateTime = new DateTime();
+        deadlineDateTime.startDateTime = LocalDateTime.parse(dateTime, getStartDateTime);
+        deadlineDateTime.displayDateTime = deadlineDateTime.startDateTime.format(getStartDateTime);
         return deadlineDateTime;
     }
 
     public static DateTime setEventTime (String dateTime) throws DukeException {
-        Border lines = new Border();
         DateTime eventDateTime = new DateTime();
         int divider = dateTime.indexOf("-");
         if (divider == -1 || (divider == dateTime.length() - 1)) {
-            throw new DukeException((lines.createLine()) + "\n Need to have end time. \n" + (lines.createLine()));
+            throw new DukeException("\n Please key in the end time.");
         }
-
         String end = dateTime.substring(divider + 1, dateTime.length());
-        DateTimeFormatter toFormat = DateTimeFormatter.ofPattern("d/MM/yyyy HHmm");
-        eventDateTime.startDateTime = LocalDateTime.parse(dateTime, toFormat);
+        eventDateTime.startDateTime = LocalDateTime.parse(dateTime.substring(0,divider), getStartDateTime);
         eventDateTime.endDateTime = LocalTime.parse(end, DateTimeFormatter.ofPattern("HHmm"));
-        eventDateTime.displayDateTime = getDayOfMonth(eventDateTime.startDateTime.format(getDay)) + " " + eventDateTime.startDateTime.format(getMonth)
-                + " " + eventDateTime.startDateTime.format(getTime) + "-" + eventDateTime.endDateTime.format(getTime);
+        eventDateTime.displayDateTime = eventDateTime.startDateTime.format(getStartDateTime) + "-" + eventDateTime.endDateTime.format(getTime);
+        return eventDateTime;
+    }
+
+    public static DateTime readEventTime (String dateTime) throws DukeException {
+        DateTime eventDateTime = new DateTime();
+        int divider = dateTime.indexOf("-");
+        if (divider == -1 || (divider == dateTime.length() - 1)) {
+            throw new DukeException("\n Please key in the end time.");
+        }
+        String end = dateTime.substring(divider + 1, dateTime.length());
+        eventDateTime.startDateTime = LocalDateTime.parse(dateTime.substring(0,divider), getStartDateTime);
+        eventDateTime.endDateTime = LocalTime.parse(end, DateTimeFormatter.ofPattern("HHmm"));
+        eventDateTime.displayDateTime = eventDateTime.startDateTime.format(getStartDateTime) + "-" + eventDateTime.endDateTime.format(getTime);
         return eventDateTime;
     }
 
