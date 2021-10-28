@@ -1,3 +1,8 @@
+package task;
+
+import datetime.DateTime;
+import exception.DukeException;
+
 public class Event extends Task
 {
         DateTime dateTime;

@@ -1,4 +1,9 @@
-import java.util.Scanner;
+import command.Command;
+import exception.DukeException;
+import filewriter.Storage;
+import parser.Parser;
+import task.TaskList;
+import ui.Ui;
 
 public class Duke {
 
@@ -34,8 +39,7 @@ public class Duke {
         ui.showGoodbye();
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }
 }

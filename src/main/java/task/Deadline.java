@@ -1,3 +1,8 @@
+package task;
+
+import datetime.DateTime;
+import exception.DukeException;
+
 public class Deadline extends Task {
     DateTime dateTime;
         public Deadline(String description) throws DukeException {

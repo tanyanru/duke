@@ -1,3 +1,7 @@
+package command;
+
+import exception.DukeException;
+
 public enum FullCommand {
     LIST("list"),
     TODO ("todo"),

@@ -1,6 +1,9 @@
-public class Parser {
-    TaskList schedule;
+package parser;
 
+import command.*;
+import exception.DukeException;
+
+public class Parser {
     public static Command parse(String instruction) throws DukeException {
         String[] arr = instruction.split(" ", 2);
         FullCommand command = FullCommand.getByAction(arr[0]);

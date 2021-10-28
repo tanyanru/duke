@@ -1,3 +1,9 @@
+package task;
+
+import exception.DukeException;
+import filewriter.Storage;
+import task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList
@@ -43,7 +49,7 @@ public class TaskList
         return completedTask;
     }
 
-    public void addTask(Task task) throws DukeException{
+    public void addTask(Task task) throws DukeException {
         taskList.add(task);
         taskNum++;
     }
@@ -85,7 +91,7 @@ public class TaskList
                     try {
                         try {
                             if (arr.length < 2)
-                                throw new DukeException((lines.createLine()) + "\n Which tasks have u completed? \n" + (lines.createLine()));
+                                throw new exception.DukeException((lines.createLine()) + "\n Which tasks have u completed? \n" + (lines.createLine()));
                             taskList.get(Integer.parseInt(arr[1]) - 1).markAsDone();
                             FileWriterClass.writeFile(filePath,taskList.toString());
                             System.out.println(lines.createLine());
@@ -93,11 +99,11 @@ public class TaskList
                             System.out.println(taskList.get(Integer.parseInt(arr[1]) - 1).toString());
                             System.out.println(lines.createLine());
                         } catch (NullPointerException | IndexOutOfBoundsException e) {
-                            throw new DukeException((lines.createLine()) + "\n Index out of bounds. \n" + (lines.createLine()));
+                            throw new exception.DukeException((lines.createLine()) + "\n Index out of bounds. \n" + (lines.createLine()));
                         } catch (NumberFormatException e) {
-                            throw new DukeException((lines.createLine()) + "\n Please enter the task number that you have completed.  \n" + (lines.createLine()));
+                            throw new exception.DukeException((lines.createLine()) + "\n Please enter the task number that you have completed.  \n" + (lines.createLine()));
                         }
-                    } catch (DukeException e) {
+                    } catch (exception.DukeException e) {
                         System.out.println(e.getMessage());
                     } finally {
                         break;
@@ -106,8 +112,8 @@ public class TaskList
                     try {
                         try {
                             if (arr.length < 2)
-                                throw new DukeException((lines.createLine()) + "\n Which tasks have u completed? \n" + (lines.createLine()));
-                            Task removeTask = taskList.get(Integer.parseInt(arr[1]) - 1);
+                                throw new exception.DukeException((lines.createLine()) + "\n Which tasks have u completed? \n" + (lines.createLine()));
+                            task.Task removeTask = taskList.get(Integer.parseInt(arr[1]) - 1);
                             taskList.remove(removeTask);
                             FileWriterClass.writeFile(filePath, taskList.toString());
                             taskNum--;
@@ -116,11 +122,11 @@ public class TaskList
                             System.out.println("Now you have " + taskNum + " in the list.");
                             System.out.println(lines.createLine());
                         } catch (NullPointerException | IndexOutOfBoundsException e) {
-                            throw new DukeException(lines.createLine() + "\n Index out of bounds. \n" + (lines.createLine()));
+                            throw new exception.DukeException(lines.createLine() + "\n Index out of bounds. \n" + (lines.createLine()));
                         } catch (NumberFormatException e) {
-                            throw new DukeException((lines.createLine()) + "\n Please enter the task number that you would like to delete.  \n" + (lines.createLine()));
+                            throw new exception.DukeException((lines.createLine()) + "\n Please enter the task number that you would like to delete.  \n" + (lines.createLine()));
                         }
-                    } catch (DukeException e) {
+                    } catch (exception.DukeException e) {
                         System.out.println(e.getMessage());
                     } finally {
                         break;
@@ -128,7 +134,7 @@ public class TaskList
 
                 default:
                     try {
-                        Task newTask = track(activity, arr);
+                        task.Task newTask = track(activity, arr);
                         taskList.add(newTask);
                         FileWriterClass.writeFile(filePath, taskList.toString());
                         taskNum++;
@@ -136,43 +142,43 @@ public class TaskList
                         System.out.println("Got it. I've added this task: " + "\n" + newTask.toString());
                         System.out.println("Now you have " + taskNum + " task(s) in the list." + "\n" + lines.createLine());
                         break;
-                    } catch (DukeException e) {
+                    } catch (exception.DukeException e) {
                         System.out.println(e.getMessage());
                     }
                 }
-            }  catch (DukeException e) {
+            }  catch (exception.DukeException e) {
             System.out.println(e.getMessage());
         }
     }
 
 
-    private Task track(Activity activity, String[] arr) throws DukeException
+    private task.Task track(Activity activity, String[] arr) throws exception.DukeException
     {
         try
         {
             switch (activity) {
                 case TODO:
                     checkDescription(arr, "todo");
-                    return new Todo(arr[1]);
+                    return new task.Todo(arr[1]);
                 case DEADLINE:
                     checkDescription(arr, "deadline");
-                    return new Deadline(arr[1]);
+                    return new task.Deadline(arr[1]);
                 default:
                     checkDescription(arr, "event");
-                    return new Event(arr[1]);
+                    return new task.Event(arr[1]);
             }
         }
-        catch(DukeException e)
+        catch(exception.DukeException e)
         {
             throw e;
         }
     }
 
-    private void checkDescription (String[] arr, String taskType) throws DukeException
+    private void checkDescription (String[] arr, String taskType) throws exception.DukeException
     {
         if (arr.length < 2)
         {
-            throw new DukeException((lines.createLine()) + "\n The description of a " + taskType + " cannot be empty.\n" + (lines.createLine()));
+            throw new exception.DukeException((lines.createLine()) + "\n The description of a " + taskType + " cannot be empty.\n" + (lines.createLine()));
         }
     }*/
 
