@@ -10,17 +10,30 @@ import java.io.IOException;
 import java.io.File;
 import java.io.FileWriter;
 
+/**
+ * Class of storage.
+ * Stores and reads from text file.
+ */
 public class Storage {
     String filePath;
     FileWriter fw;
     ArrayList<Task> taskList;
     boolean isAppend = true;
 
+    /**
+     * Constructor of Storage object.
+     * @param filepath filepath to text file to be read from and edited.
+     * @throws DukeException When CreateWriter throws DukeException.
+     */
     public Storage(String filepath) throws DukeException{
         this.filePath = filepath;
         this.createWriter();
     }
 
+    /**
+     * Creates FileWriter member fw.
+     * @throws DukeException when invalid filepath.
+     */
     private void createWriter() throws DukeException{
         try{
             fw = new FileWriter(filePath, isAppend);
@@ -29,6 +42,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Wrapper to close FileWriter fw.
+     * Uses in Execute method of ExitCommand object.
+     * @throws DukeException when invalid filepath.
+     */
     public void closeWriter() throws DukeException{
         try {
             fw.close();
@@ -37,6 +55,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Adds Task to TaskList data stored in txt file.
+     * Calls during execute method of addCommand object.
+     * @param textToAdd (Command Object).to String();
+     * @throws DukeException Throws when IOException is caught.
+     */
     public void writeToFile(String textToAdd) throws DukeException{
         try {
             fw.write(textToAdd + "\n");
@@ -46,6 +70,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Rewrites data in txt file with editions made.
+     * Calls when Execute command of DeleteCommand or EditCommand object modifies TaskList.
+     * @param schedule Modifies contents of TaskList.
+     * @throws DukeException Throws when IOException is caught.
+     */
     public void editFile(TaskList schedule) throws DukeException{
         try {
             checkAppend(false);
@@ -57,12 +87,23 @@ public class Storage {
         }
     }
 
+    /**
+     * Toggles willAppend boolean, which determines if FileWriter fw will append to txt file or overwrite it.
+     * @param toAppend New boolean value of toAppend.
+     * @throws DukeException Throws when createWriter throws DukeException.
+     */
     private void checkAppend(boolean toAppend) throws DukeException {
         closeWriter();
         isAppend = toAppend;
         createWriter();
     }
 
+    /**
+     * Interprets each line in txt file and add corresponding Task to TaskList.
+     * @param line every line in the txt file represents a task.
+     * @return Task object with type, task name, date and timing as described in String.
+     * @throws DukeException Throws when Task is not stored in the correct format in txt file.
+     */
     private Task read(String line) throws DukeException {
         Task output;
         switch (line.charAt(line.indexOf("[") + 1)) {
@@ -93,6 +134,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads txt file and updates TaskList accordingly.
+     * Calls read method line by line, and gets corresponding Task.
+     * Checks each line to check if Task should markAsDone.
+     * @return Storage object with updated ArrayList<Task> taskList used in construction of TaskList object.
+     * @throws DukeException when read throws DukeException.
+     */
     public Storage load() throws DukeException {
         try {
             taskList = new ArrayList<>();
@@ -116,7 +164,11 @@ public class Storage {
         }
     }
 
-    public ArrayList<Task> getSchedule(){
+    /**
+     * Calls during construction method of TaskList.
+     * @return ArrayList of Task
+     */
+    public ArrayList<Task> getSchedule() {
         return taskList;
     }
 }

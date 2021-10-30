@@ -2,6 +2,11 @@ package command;
 
 import exception.DukeException;
 
+/**
+ * Enum detailing all the valid commands Duke understands.
+ * Uses by Parser to generate Command Object.
+ * Checks if user types invalid command.
+ */
 public enum FullCommand {
     LIST("list"),
     TODO ("todo"),
@@ -22,6 +27,12 @@ public enum FullCommand {
         return activityName;
     }
 
+    /**
+     * Generates FullCommand based on String user input.
+     * @param keyword Specifies the type of FullCommand.
+     * @return Returns FullCommand to be parsed by parser.
+     * @throws DukeException Throws when user enters invalid command.
+     */
     public static FullCommand getByAction (String keyword) throws DukeException
     {
         for (FullCommand activity : values()) {

@@ -3,9 +3,18 @@ package task;
 import datetime.DateTime;
 import exception.DukeException;
 
+/**
+ * toString method of DeadLine.
+ * @return String denoting task name, status date and time of Deadline task.
+ */
 public class Event extends Task
 {
         DateTime dateTime;
+        /**
+         * Constructor for Event object. Calls when generating TaskList based on user input.
+         * @param description Contains task name, date, starting time and ending time.
+         * @throws DukeException Throws when description format is incorrect. or when setEventTime throws DukeException.
+         */
         public Event(String description) throws DukeException {
                 super(description);
                 int divider = description.indexOf("/at");
@@ -16,6 +25,10 @@ public class Event extends Task
                 super.taskDesc = super.taskDesc.substring(0,divider);
         }
 
+        /**
+         * toString method of Event.
+         * @return String denoting task name, status, date, and starting and ending time of task.
+         */
         @Override
         public String toString() {
                 String output = "[E][" + super.getStatus() + "]" + " " + super.taskDesc + "(at: " + dateTime.toString() + ")";

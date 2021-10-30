@@ -1,17 +1,30 @@
 package task;
 
+/**
+ * Abstract class which all other Task classes extend (Event, deadline etc.).
+ */
 public abstract class Task
 {
     protected String taskDesc;
     protected boolean isDone;
     protected boolean deleted;
 
+    /**
+     *Constructor method of Task.
+     * @param taskDesc contains information of Task, includes task name and may include date and time.
+     */
     public Task(String taskDesc) {
         this.taskDesc = taskDesc;
         this.isDone = false;
         this.deleted = false;
     }
 
+    /**
+     * Calls when execute method of findCommand is called.
+     * Checks to see if description of task contains keyword.
+     * @param keyword word/phrase to find in description.
+     * @return boolean value indicating if word/phrase can be found in description.
+     */
     public boolean findWord(String keyword) {
         if (taskDesc.indexOf(keyword) == -1){
             return false;
@@ -20,11 +33,17 @@ public abstract class Task
         }
     }
 
+    /**
+     * Calls in toString method. Indicates status of completion of task.
+     * @return tick if done, else cross.
+     */
     public String getStatus() {
-        //tick if done, else cross
         return (isDone ? "\u2713" : "\u2718");
     }
 
+    /**
+     * sets isDone value to true.
+     */
     public void markAsDone() {
         this.isDone = true;
     }
