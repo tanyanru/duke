@@ -39,7 +39,7 @@ public class FindCommand extends Command {
      * @param storage Updates data record of TaskList in storage.filepath if needed.
      * @throws DukeException
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> shortlist = new ArrayList<>();
         for (Task task: tasks.getList()){
             if (task.findWord(keyword)){

@@ -98,7 +98,7 @@ public class DateTime {
      * @return 1 or 2 digits number with appropriate suffix.
      */
      private static String getDayOfMonth(String dd) {
-         if (dd.substring(0,1).equals("0")){
+         if (dd.substring(0,1).equals("0")) {
              dd = dd.substring(1,dd.length());
          }
          int day = Integer.parseInt(dd);
@@ -106,10 +106,14 @@ public class DateTime {
              return day + "th";
          }
          switch (day & 10) {
-             case 1: return day + "st";
-             case 2: return day + "nd";
-             case 3: return day + "rd";
-             default: return day + "th";
+         case 1:
+             return day + "st";
+         case 2:
+             return day + "nd";
+         case 3:
+             return day + "rd";
+         default:
+             return day + "th";
          }
      }
 

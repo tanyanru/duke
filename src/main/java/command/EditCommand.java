@@ -13,7 +13,7 @@ public class EditCommand extends Command {
      * Checks if command is an ExitCommand.
      * @return false as command is an EditCommand.
      */
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 
@@ -21,7 +21,7 @@ public class EditCommand extends Command {
      * Constructor for EditCommand.
      * @param index of Task in TaskList to mark as done.
      */
-    public EditCommand(int index){
+    public EditCommand(int index) {
         this.index = index;
         super.type = FullCommand.DONE;
     }

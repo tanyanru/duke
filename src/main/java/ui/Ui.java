@@ -28,7 +28,7 @@ public class Ui {
     /**
      * Calls when execute method of ExitCommand is called.
      */
-    public void showGoodbye(){
+    public void showGoodbye() {
         System.out.println("Bye. Hope to see you again soon!");
         showLine();
     }
@@ -36,7 +36,7 @@ public class Ui {
     /**
      * Prints border.
      */
-    public void showLine(){
+    public void showLine() {
         String output = "";
         for (int n = 0; n < 80; n++) {
             output += "_";
@@ -50,7 +50,7 @@ public class Ui {
      * @param newTask task entered.
      * @param taskNum number of tasks in Task List.
      */
-    public void readTask(Task newTask, int taskNum){
+    public void readTask(Task newTask, int taskNum) {
         System.out.println("Got it. I've added this task:");
         System.out.println(newTask.toString());
         System.out.println("Now you have " + taskNum + " tasks in the list.");
@@ -63,7 +63,7 @@ public class Ui {
      * @param removeTask
      * @param taskNum
      */
-    public void readDelete(Task removeTask, int taskNum){
+    public void readDelete(Task removeTask, int taskNum) {
         System.out.println("Noted. I've removed this task:");
         System.out.println(removeTask.toString());
         System.out.println("Now you have " + taskNum + " tasks in the list.");
@@ -113,7 +113,7 @@ public class Ui {
      * Calls when Duke Exception is thrown when instantiating Task List and/ or Storage Objects.
      * Calls by run method in Duke class.
      */
-    public void showLoadingError(){
+    public void showLoadingError() {
         System.out.println("Loading Error!");
         showLine();
     }
