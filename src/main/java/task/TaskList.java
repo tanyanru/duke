@@ -29,7 +29,7 @@ public class TaskList
             } else {
                 isFirst = false;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -40,7 +40,7 @@ public class TaskList
     public TaskList() {
         this.taskList = new ArrayList<Task>();
         taskNum = taskList.size();
-        if (taskNum == 0){
+        if (taskNum == 0) {
             isFirst = true;
         } else {
             isFirst = false;
@@ -80,8 +80,7 @@ public class TaskList
      * @throws NumberFormatException
      * @throws DukeException
      */
-    public Task complete(int index)
-            throws NullPointerException, IndexOutOfBoundsException, NumberFormatException, DukeException{
+    public Task complete(int index) throws NullPointerException, IndexOutOfBoundsException, NumberFormatException, DukeException {
         Task completedTask = taskList.get(index);
         completedTask.markAsDone();
         return completedTask;
@@ -106,8 +105,7 @@ public class TaskList
      * @throws NumberFormatException
      * @throws DukeException
      */
-    public Task remove(int index)
-            throws NullPointerException, IndexOutOfBoundsException, NumberFormatException, DukeException{
+    public Task remove(int index) throws NullPointerException, IndexOutOfBoundsException, NumberFormatException, DukeException {
         Task removeTask = taskList.get(index);
         taskList.remove(index);
         taskNum--;
@@ -129,8 +127,7 @@ public class TaskList
      */
     public String toString() {
         String output = "";
-        for (int idx = 0; idx < taskNum; idx ++)
-        {
+        for (int idx = 0; idx < taskNum; idx ++) {
             Task task = taskList.get(idx);
             output += ((idx + 1) + "." + task.toString() + "\n");
         }

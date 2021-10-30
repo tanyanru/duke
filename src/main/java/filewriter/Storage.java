@@ -25,7 +25,7 @@ public class Storage {
      * @param filepath filepath to text file to be read from and edited.
      * @throws DukeException When CreateWriter throws DukeException.
      */
-    public Storage(String filepath) throws DukeException{
+    public Storage(String filepath) throws DukeException {
         this.filePath = filepath;
         this.createWriter();
     }
@@ -34,7 +34,7 @@ public class Storage {
      * Creates FileWriter member fw.
      * @throws DukeException when invalid filepath.
      */
-    private void createWriter() throws DukeException{
+    private void createWriter() throws DukeException {
         try{
             fw = new FileWriter(filePath, isAppend);
         } catch (IOException e) {
@@ -107,30 +107,30 @@ public class Storage {
     private Task read(String line) throws DukeException {
         Task output;
         switch (line.charAt(line.indexOf("[") + 1)) {
-            case 'T':
-                output = new Todo(line.substring(7, line.length()));
+        case 'T':
+            output = new Todo(line.substring(7, line.length()));
+            return output;
+        case 'D':
+            try {
+                int divider = line.indexOf("(by:");
+                String input = line.substring(7, divider);
+                input += "/by " + DateTime.readDeadLine(line.substring(divider + 5, line.length() - 1)).toString();
+                output = new Deadline(input);
                 return output;
-            case 'D':
-                try {
-                    int divider = line.indexOf("(by:");
-                    String input = line.substring(7, divider);
-                    input += "/by " + DateTime.readDeadLine(line.substring(divider + 5, line.length() - 1)).toString();
-                    output = new Deadline(input);
-                    return output;
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    throw new DukeException("\n Deadline task not stored properly. \n ");
-                }
-            default:
-                try {
-                    int divider = line.indexOf("(at:");
-                    String input = line.substring(7, divider);
-                    input += "/at " + DateTime.readEventTime(line.substring(divider + 5, line.length() - 1)).toString();
-                    output = new Event(input);
-                    return output;
-                } catch (Exception e) {
-                    throw new DukeException("\n Event task not stored properly. \n ");
-                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                throw new DukeException("\n Deadline task not stored properly. \n ");
+            }
+        default:
+            try {
+                int divider = line.indexOf("(at:");
+                String input = line.substring(7, divider);
+                input += "/at " + DateTime.readEventTime(line.substring(divider + 5, line.length() - 1)).toString();
+                output = new Event(input);
+                return output;
+            } catch (Exception e) {
+                throw new DukeException("\n Event task not stored properly. \n ");
+            }
         }
     }
 
@@ -150,16 +150,16 @@ public class Storage {
                 String line = s.nextLine();
                 if (! line.equals("")) {
                     Task newTask = read(line.replace("\n", ""));
-                    if (line.substring(4,5).equals("\u2713")){
+                    if (line.substring(4,5).equals("\u2713")) {
                         newTask.markAsDone();
                     }
                     taskList.add(newTask);
                 }
             }
             return this;
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             throw new DukeException("\n File not found! \n ");
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DukeException("Unforeseen load errors: " + e.getMessage());
         }
     }

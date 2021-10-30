@@ -13,7 +13,7 @@ public class TaskStub extends Task{
         return (isDone ? "\u2713" : "\u2718"); //tick if done, else cross
     }
 
-    public void markAsDone(){
+    public void markAsDone() {
         this.isDone = true;
     }
 

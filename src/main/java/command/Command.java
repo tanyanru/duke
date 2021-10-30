@@ -15,7 +15,7 @@ public abstract class Command {
      * Checks to see if type equals FullCommand.BYE.
      * @return boolean value to check if this is an Exit command.
      */
-    public boolean isExit(){
+    public boolean isExit() {
         return type.getActivityName().equals("bye");
     }
 
