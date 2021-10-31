@@ -2,12 +2,13 @@ package command;
 
 import exception.DukeException;
 import filewriter.Storage;
-import task.*;
+import task.TaskList;
 import ui.Ui;
 
 /**
- * Abstract class for all other command classes to extend to (e.g. DeleteCommand, EditCommand, etc.), except FulLCommand enum.
+ * Abstract class for all other command classes to extend to (e.g. DeleteCommand, etc.), except FulLCommand enum.
  */
+@SuppressWarnings("checkstyle:LineLength")
 public abstract class Command {
     FullCommand type;
 
@@ -24,7 +25,9 @@ public abstract class Command {
      * @param tasks Current TaskList object used in this instance of Duke.
      * @param ui Instance of user interface to print feedback to user.
      * @param storage Updates data record of TaskList in storage.filepath if needed.
-     * @throws DukeException Various subclass of Command may throw DukeException when executed with invalid specification.
+     * @throws DukeException Various subclass of Command may throw DukeException when
+     *                       executed with invalid specification.
      */
+    @SuppressWarnings("checkstyle:LineLength")
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 }

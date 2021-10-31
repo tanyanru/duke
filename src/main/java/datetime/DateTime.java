@@ -10,6 +10,7 @@ import java.time.format.DateTimeParseException;
  * Wrapper of LocalDateTime.
  * Stores date and time for Task.
  */
+@SuppressWarnings("checkstyle:SummaryJavadoc")
 public class DateTime {
     private LocalTime endDateTime;
     private LocalDateTime startDateTime;
@@ -31,7 +32,8 @@ public class DateTime {
             deadlineDateTime.displayDateTime = deadlineDateTime.startDateTime.format(getStartDateTime);
             return deadlineDateTime;
         } catch (DateTimeParseException e) {
-            throw new DukeException("Incorrect deadline datetime format. \nPlease key in deadline (task) /by d/MM/yyyy HHmm");
+            throw new DukeException("Incorrect deadline datetime format. "
+                    + "\n Please key in deadline (task) /by d/MM/yyyy HHmm");
         }
     }
 
@@ -41,7 +43,7 @@ public class DateTime {
      * @param dateTime Must be in the form (d/MM/yyyy HHmm).
      * @return DateTime object as dateTime parameter of Deadline object.
      */
-    public static DateTime readDeadLine(String dateTime){
+    public static DateTime readDeadLine(String dateTime) {
         DateTime deadlineDateTime = new DateTime();
         deadlineDateTime.startDateTime = LocalDateTime.parse(dateTime, getStartDateTime);
         deadlineDateTime.displayDateTime = deadlineDateTime.startDateTime.format(getStartDateTime);
@@ -55,7 +57,7 @@ public class DateTime {
      * @return DateTime object as dateTime parameter of Event object.
      * @throws DukeException Throws if missing end time or if dateTime is not presented in the correct form.
      */
-    public static DateTime setEventTime (String dateTime) throws DukeException {
+    public static DateTime setEventTime(String dateTime) throws DukeException {
         try {
             DateTime eventDateTime = new DateTime();
             int divider = dateTime.indexOf("-");
@@ -65,10 +67,12 @@ public class DateTime {
             String end = dateTime.substring(divider + 1, dateTime.length());
             eventDateTime.startDateTime = LocalDateTime.parse(dateTime.substring(0, divider), getStartDateTime);
             eventDateTime.endDateTime = LocalTime.parse(end, DateTimeFormatter.ofPattern("HHmm"));
-            eventDateTime.displayDateTime = eventDateTime.startDateTime.format(getStartDateTime) + "-" + eventDateTime.endDateTime.format(getTime);
+            eventDateTime.displayDateTime = eventDateTime.startDateTime.format(getStartDateTime) + "-"
+                    + eventDateTime.endDateTime.format(getTime);
             return eventDateTime;
         } catch (DateTimeParseException e) {
-            throw new DukeException("Incorrect event format. \n Please key in event (details) /at d/mm/yyyy (start time)HHmm-(end time)HHmm");
+            throw new DukeException("Incorrect event format. "
+                    + "\n Please key in event (details) /at d/mm/yyyy (start time)HHmm-(end time)HHmm");
         }
     }
 
@@ -79,45 +83,46 @@ public class DateTime {
      * @return DateTime object as dateTime parameter of Event object.
      * @throws DukeException Throws if missing end time. This should not happen unless text file was tampered with.
      */
-    public static DateTime readEventTime (String dateTime) throws DukeException {
+    public static DateTime readEventTime(String dateTime) throws DukeException {
         DateTime eventDateTime = new DateTime();
         int divider = dateTime.indexOf("-");
-        if (divider == -1 || (divider == dateTime.length() - 1) || dateTime.substring(divider + 1).replace(" ", "").equals("")) {
+        if (divider == -1 || (divider == dateTime.length() - 1)
+                || dateTime.substring(divider + 1).replace(" ", "").equals("")) {
             throw new DukeException("Please key in the end time.");
         }
         String end = dateTime.substring(divider + 1, dateTime.length());
         eventDateTime.startDateTime = LocalDateTime.parse(dateTime.substring(0,divider), getStartDateTime);
         eventDateTime.endDateTime = LocalTime.parse(end, DateTimeFormatter.ofPattern("HHmm"));
-        eventDateTime.displayDateTime = eventDateTime.startDateTime.format(getStartDateTime) + "-" + eventDateTime.endDateTime.format(getTime);
+        eventDateTime.displayDateTime = eventDateTime.startDateTime.format(getStartDateTime) + "-"
+                + eventDateTime.endDateTime.format(getTime);
         return eventDateTime;
     }
 
-    /**
-     * Adds suffix to date of month
+     /**
+     * Adds suffix to date of month.
      * @param dd day of month as a 2 digits number.
      * @return 1 or 2 digits number with appropriate suffix.
-     */
-     private static String getDayOfMonth(String dd) {
-         if (dd.substring(0,1).equals("0")) {
-             dd = dd.substring(1,dd.length());
-         }
-         int day = Integer.parseInt(dd);
-         if (day >= 11 && day <= 31) {
-             return day + "th";
-         }
-         switch (day & 10) {
-         case 1:
-             return day + "st";
-         case 2:
-             return day + "nd";
-         case 3:
-             return day + "rd";
-         default:
-             return day + "th";
-         }
-     }
+     */private static String getDayOfMonth(String dd) {
+        if (dd.substring(0, 1).equals("0")) {
+            dd = dd.substring(1, dd.length());
+        }
+        int day = Integer.parseInt(dd);
+        if (day >= 11 && day <= 31) {
+            return day + "th";
+        }
+        switch (day & 10) {
+        case 1:
+            return day + "st";
+        case 2:
+            return day + "nd";
+        case 3:
+            return day + "rd";
+        default:
+            return day + "th";
+        }
+    }
 
-     public String toString() {
-         return displayDateTime;
-     }
+    public String toString() {
+        return displayDateTime;
+    }
 }

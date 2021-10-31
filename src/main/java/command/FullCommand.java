@@ -9,17 +9,17 @@ import exception.DukeException;
  */
 public enum FullCommand {
     LIST("list"),
-    TODO ("todo"),
-    EVENT ("event"),
-    DEADLINE ("deadline"),
-    DONE ("done"),
-    DELETE ("delete"),
+    TODO("todo"),
+    EVENT("event"),
+    DEADLINE("deadline"),
+    DONE("done"),
+    DELETE("delete"),
     BYE("bye"),
     FIND("find");
 
     private String activityName;
 
-    FullCommand (String activityName) {
+    FullCommand(String activityName) {
         this.activityName = activityName;
     }
 
@@ -33,8 +33,7 @@ public enum FullCommand {
      * @return Returns FullCommand to be parsed by parser.
      * @throws DukeException Throws when user enters invalid command.
      */
-    public static FullCommand getByAction (String keyword) throws DukeException
-    {
+    public static FullCommand getByAction(String keyword) throws DukeException {
         for (FullCommand activity : values()) {
             if (activity.getActivityName().equals(keyword)) {
                 return activity;

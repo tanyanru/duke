@@ -11,6 +11,9 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Shows the UI and stores/loads the file.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         try {
@@ -22,6 +25,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the DUKE program.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

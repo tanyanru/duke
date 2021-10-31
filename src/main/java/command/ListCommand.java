@@ -31,7 +31,7 @@ public class ListCommand extends Command {
      * @param tasks Current TaskList object used in this instance of Duke.
      * @param ui Instance of user interface to print feedback to user.
      * @param storage Updates data record of TaskList in storage.filepath if needed.
-     * @throws DukeException
+     * @throws DukeException if the number is not in the list or no number was indicated.
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
@@ -44,5 +44,5 @@ public class ListCommand extends Command {
         } catch (NumberFormatException e) {
             throw new DukeException("Please enter the task number that you would like to delete.");
         }
-    };
+    }
 }

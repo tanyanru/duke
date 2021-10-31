@@ -16,7 +16,7 @@ public class DeleteCommand extends Command {
      * Constructor for DeleteCommand.
      * @param index of the task to delete in the Task List.
      */
-    public DeleteCommand(int index){
+    public DeleteCommand(int index) {
         this.index = index;
         super.type = FullCommand.DELETE;
     }
