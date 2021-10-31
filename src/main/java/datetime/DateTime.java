@@ -32,8 +32,8 @@ public class DateTime {
             deadlineDateTime.displayDateTime = deadlineDateTime.startDateTime.format(getStartDateTime);
             return deadlineDateTime;
         } catch (DateTimeParseException e) {
-            throw new DukeException("Incorrect deadline datetime format. "
-                    + "\n Please key in deadline (task) /by d/MM/yyyy HHmm");
+            throw new DukeException("Incorrect deadline datetime format."
+                    + "\nPlease key in deadline (task) /by d/MM/yyyy HHmm");
         }
     }
 

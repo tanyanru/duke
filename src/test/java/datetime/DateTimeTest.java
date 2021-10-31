@@ -12,7 +12,7 @@ public class DateTimeTest {
             DateTime.setDeadline("10.02.2021 15:00");
             fail();
         } catch (DukeException e){
-            assertEquals("Incorrect deadline datetime format. \nPlease key in deadline (task) /by d/mm/yyyy HHmm", e.getMessage());
+            assertEquals("Incorrect deadline datetime format.\nPlease key in deadline (task) /by d/MM/yyyy HHmm", e.getMessage());
         }
     }
     @Test
