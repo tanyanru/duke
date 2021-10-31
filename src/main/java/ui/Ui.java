@@ -60,8 +60,8 @@ public class Ui {
     /**
      * Displays delete message.
      * Calls when execute of DeleteCommand is called.
-     * @param removeTask
-     * @param taskNum
+     * @param removeTask for task to be removed.
+     * @param taskNum number of tasks in the Task List.
      */
     public void readDelete(Task removeTask, int taskNum) {
         System.out.println("Noted. I've removed this task:");
@@ -73,11 +73,11 @@ public class Ui {
     /**
      * Displays message when a user finishes a task.
      * Calls when execute of EditCommand is called.
-     * @param completed_Task Task which has been marked as done.
+     * @param completeTask Task which has been marked as done.
      */
-    public void readDone(Task completed_Task){
+    public void readDone(Task completeTask) {
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println(completed_Task.toString());
+        System.out.println(completeTask.toString());
         showLine();
     }
 
@@ -86,7 +86,7 @@ public class Ui {
      * Calls when execute of ListCommand is called.
      * @param tasks TaskList
      */
-    public void readList(TaskList tasks){
+    public void readList(TaskList tasks) {
         System.out.println("Here are the tasks in your list: ");
         System.out.println(tasks);
         showLine();
@@ -102,10 +102,10 @@ public class Ui {
 
     /**
      * Displays message when DukeException is caught.
-     * @param error_msg DukeException e.getMessage()
+     * @param errorMsg DukeException e.getMessage()
      */
-    public void showError(String error_msg) {
-        System.out.println("Your error message: " + error_msg);
+    public void showError(String errorMsg) {
+        System.out.println("Your error message: " + errorMsg);
         showLine();
     }
 

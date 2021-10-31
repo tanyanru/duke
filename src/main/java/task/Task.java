@@ -3,8 +3,7 @@ package task;
 /**
  * Abstract class which all other Task classes extend (Event, deadline etc.).
  */
-public abstract class Task
-{
+public abstract class Task {
     protected String taskDesc;
     protected boolean isDone;
     protected boolean deleted;
@@ -26,7 +25,7 @@ public abstract class Task
      * @return boolean value indicating if word/phrase can be found in description.
      */
     public boolean findWord(String keyword) {
-        if (taskDesc.indexOf(keyword) == -1){
+        if (taskDesc.indexOf(keyword) == -1) {
             return false;
         } else {
             return true;

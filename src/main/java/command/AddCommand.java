@@ -2,7 +2,11 @@ package command;
 
 import exception.DukeException;
 import filewriter.Storage;
-import task.*;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.TaskList;
+import task.Todo;
 import ui.Ui;
 
 /**
@@ -16,7 +20,7 @@ public class AddCommand extends Command {
      * @param taskType type of command/task (e.g. deadline, event, find etc).
      * @param specifics includes the command/task name as well as the date and time specially for DEADLINE and EVENT.
      */
-    public AddCommand(FullCommand taskType, String specifics){
+    public AddCommand(FullCommand taskType, String specifics) {
         super.type = taskType;
         this.specifics = specifics;
     }
@@ -25,7 +29,7 @@ public class AddCommand extends Command {
      * Checks if command is an ExitCommand.
      * @return false as command will be AddCommand.
      */
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 
@@ -38,7 +42,7 @@ public class AddCommand extends Command {
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task newTask;
-        switch(type){
+        switch (type) {
         case TODO:
             newTask = new Todo(specifics);
             break;
@@ -51,11 +55,11 @@ public class AddCommand extends Command {
         }
         tasks.addTask(newTask);
         ui.readTask(newTask, tasks.taskNum);
-        if (tasks.isFirst){
+        if (tasks.isFirst) {
             tasks.isFirst = !tasks.isFirst;
         } else {
             storage.writeToFile(System.lineSeparator());
         }
         storage.writeToFile(newTask.toString());
-    };
+    }
 }

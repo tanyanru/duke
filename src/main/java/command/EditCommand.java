@@ -36,7 +36,7 @@ public class EditCommand extends Command {
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            if (index == -1){
+            if (index == -1) {
                 throw new IndexOutOfBoundsException();
             }
             Task completedTask = tasks.complete(index);

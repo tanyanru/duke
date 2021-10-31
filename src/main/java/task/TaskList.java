@@ -9,9 +9,8 @@ import java.util.ArrayList;
 /**
  * Object containing data structure to store Tasks.
  */
-public class TaskList
-{
-    ArrayList <Task> taskList = new ArrayList<> ();
+public class TaskList {
+    ArrayList<Task> taskList = new ArrayList<>();
     public int taskNum;
     public boolean isFirst;
 
@@ -24,7 +23,7 @@ public class TaskList
         try {
             this.taskList = storage.getSchedule();
             taskNum = taskList.size();
-            if (taskNum == 0){
+            if (taskNum == 0) {
                 isFirst = true;
             } else {
                 isFirst = false;
@@ -75,12 +74,17 @@ public class TaskList
      * Marks a Task in task list as done.
      * @param index Specifies which task to mark as done.
      * @return completed Task.
-     * @throws NullPointerException
-     * @throws IndexOutOfBoundsException
-     * @throws NumberFormatException
-     * @throws DukeException
+     * @throws NullPointerException Throws when an application attempts
+     *                              to use null in a case where an object is required.
+     * @throws IndexOutOfBoundsException Throws to indicate that an index of
+     *                                   some sort (such as to an array, to a string, or to a vector) is out of range.
+     * @throws NumberFormatException Throws to indicate that the application has attempted to convert a string to
+     *                               one of the numeric types, but that the string does not have appropriate format.
+     * @throws DukeException Wraps exception. Helps to check if
+     *                       exception has been accounted for. Catches exception and throws DukeException.
      */
-    public Task complete(int index) throws NullPointerException, IndexOutOfBoundsException, NumberFormatException, DukeException {
+    public Task complete(int index) throws NullPointerException, IndexOutOfBoundsException,
+            NumberFormatException, DukeException {
         Task completedTask = taskList.get(index);
         completedTask.markAsDone();
         return completedTask;
@@ -88,8 +92,8 @@ public class TaskList
 
     /**
      * Adds new Task to TaskList.
-     * @param task
-     * @throws DukeException
+     * @param task to add a new task.
+     * @throws DukeException if unexpected error occurs.
      */
     public void addTask(Task task) throws DukeException {
         taskList.add(task);
@@ -98,14 +102,19 @@ public class TaskList
 
     /**
      * Deletes Task from TaskList.
-     * @param index
+     * @param index based on the index number.
      * @return deleted Task.
-     * @throws NullPointerException
-     * @throws IndexOutOfBoundsException
-     * @throws NumberFormatException
-     * @throws DukeException
+     * @throws NullPointerException Throws when an application attempts
+     *                              to use null in a case where an object is required.
+     * @throws IndexOutOfBoundsException Throws to indicate that an index of
+     *                                   some sort (such as to an array, to a string, or to a vector) is out of range.
+     * @throws NumberFormatException Throws to indicate that the application has attempted to convert a string to
+     *                               one of the numeric types, but that the string does not have appropriate format.
+     * @throws DukeException Wraps exception. Helps to check if
+     *                       exception has been accounted for. Catches exception and throws DukeException.
      */
-    public Task remove(int index) throws NullPointerException, IndexOutOfBoundsException, NumberFormatException, DukeException {
+    public Task remove(int index) throws NullPointerException, IndexOutOfBoundsException,
+            NumberFormatException, DukeException {
         Task removeTask = taskList.get(index);
         taskList.remove(index);
         taskNum--;
@@ -113,9 +122,9 @@ public class TaskList
     }
 
     /**
-     * Retrieves ArrayList<Task> schedule from TaskList.
+     * Retrieves Task schedule from TaskList array.
      * Calls when execute method of FindCommand is called.
-     * @return ArrayList<Task>
+     * @return Task schedule from TaskList array.
      */
     public ArrayList<Task> getList() {
         return taskList;
@@ -127,7 +136,7 @@ public class TaskList
      */
     public String toString() {
         String output = "";
-        for (int idx = 0; idx < taskNum; idx ++) {
+        for (int idx = 0; idx < taskNum; idx++) {
             Task task = taskList.get(idx);
             output += ((idx + 1) + "." + task.toString() + "\n");
         }

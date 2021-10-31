@@ -1,6 +1,13 @@
 package parser;
 
-import command.*;
+import command.AddCommand;
+import command.Command;
+import command.DeleteCommand;
+import command.EditCommand;
+import command.ExitCommand;
+import command.FindCommand;
+import command.FullCommand;
+import command.ListCommand;
 import exception.DukeException;
 
 /**
@@ -34,8 +41,8 @@ public class Parser {
                 }
                 return new AddCommand(command, arr[1]);
             }
-    } catch (IndexOutOfBoundsException | DukeException e) {
-        throw new DukeException("Please provide commands in the format: (command type) (task details)");
+        } catch (IndexOutOfBoundsException | DukeException e) {
+            throw new DukeException("Please provide commands in the format: (command type) (task details)");
+        }
     }
-}
 }

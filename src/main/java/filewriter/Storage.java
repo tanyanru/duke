@@ -2,7 +2,11 @@ package filewriter;
 
 import datetime.DateTime;
 import exception.DukeException;
-import task.*;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.TaskList;
+import task.Todo;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -35,10 +39,10 @@ public class Storage {
      * @throws DukeException when invalid filepath.
      */
     private void createWriter() throws DukeException {
-        try{
+        try {
             fw = new FileWriter(filePath, isAppend);
         } catch (IOException e) {
-            throw new DukeException("\n Invalid filepath. Please check.  \n");
+            throw new DukeException("\n Invalid filepath. Please check.");
         }
     }
 
@@ -47,11 +51,11 @@ public class Storage {
      * Uses in Execute method of ExitCommand object.
      * @throws DukeException when invalid filepath.
      */
-    public void closeWriter() throws DukeException{
+    public void closeWriter() throws DukeException {
         try {
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("\n Invalid filepath. Please check.  \n");
+            throw new DukeException("\n Invalid filepath. Please check.");
         }
     }
 
@@ -61,12 +65,12 @@ public class Storage {
      * @param textToAdd (Command Object).to String();
      * @throws DukeException Throws when IOException is caught.
      */
-    public void writeToFile(String textToAdd) throws DukeException{
+    public void writeToFile(String textToAdd) throws DukeException {
         try {
             fw.write(textToAdd + "\n");
             //System.out.println(textToAdd);
         } catch (IOException e) {
-            throw new DukeException("\n Please check. Error message: " + e.getMessage() + "\n");
+            throw new DukeException("\n Please check. Error message: " + e.getMessage());
         }
     }
 
@@ -76,7 +80,7 @@ public class Storage {
      * @param schedule Modifies contents of TaskList.
      * @throws DukeException Throws when IOException is caught.
      */
-    public void editFile(TaskList schedule) throws DukeException{
+    public void editFile(TaskList schedule) throws DukeException {
         try {
             checkAppend(false);
             for (Task task: schedule.getList()) {
@@ -119,7 +123,7 @@ public class Storage {
                 return output;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-                throw new DukeException("\n Deadline task not stored properly. \n ");
+                throw new DukeException("\n Deadline task not stored properly.");
             }
         default:
             try {
@@ -129,7 +133,7 @@ public class Storage {
                 output = new Event(input);
                 return output;
             } catch (Exception e) {
-                throw new DukeException("\n Event task not stored properly. \n ");
+                throw new DukeException("\n Event task not stored properly.");
             }
         }
     }
@@ -138,7 +142,7 @@ public class Storage {
      * Reads txt file and updates TaskList accordingly.
      * Calls read method line by line, and gets corresponding Task.
      * Checks each line to check if Task should markAsDone.
-     * @return Storage object with updated ArrayList<Task> taskList used in construction of TaskList object.
+     * @return Storage object with updated Task taskList used in construction of TaskList object.
      * @throws DukeException when read throws DukeException.
      */
     public Storage load() throws DukeException {
@@ -160,7 +164,7 @@ public class Storage {
         } catch (FileNotFoundException e) {
             throw new DukeException("\n File not found! \n ");
         } catch (Exception e) {
-            throw new DukeException("Unforeseen load errors: " + e.getMessage());
+            throw new DukeException("Unexpected Error: " + e.getMessage());
         }
     }
 
