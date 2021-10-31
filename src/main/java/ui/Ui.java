@@ -20,7 +20,6 @@ public class Ui {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        showLine();
         System.out.println("Hello! I'm \n" + logo + "What can I do for you?");
         showLine();
     }
@@ -38,7 +37,7 @@ public class Ui {
      */
     public void showLine() {
         String output = "";
-        for (int n = 0; n < 80; n++) {
+        for (int n = 0; n < 50; n++) {
             output += "_";
         }
         System.out.println(output);
@@ -51,6 +50,7 @@ public class Ui {
      * @param taskNum number of tasks in Task List.
      */
     public void readTask(Task newTask, int taskNum) {
+        showLine();
         System.out.println("Got it. I've added this task:");
         System.out.println(newTask.toString());
         System.out.println("Now you have " + taskNum + " tasks in the list.");
@@ -64,6 +64,7 @@ public class Ui {
      * @param taskNum number of tasks in the Task List.
      */
     public void readDelete(Task removeTask, int taskNum) {
+        showLine();
         System.out.println("Noted. I've removed this task:");
         System.out.println(removeTask.toString());
         System.out.println("Now you have " + taskNum + " tasks in the list.");
@@ -76,6 +77,7 @@ public class Ui {
      * @param completeTask Task which has been marked as done.
      */
     public void readDone(Task completeTask) {
+        showLine();
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(completeTask.toString());
         showLine();
@@ -87,6 +89,7 @@ public class Ui {
      * @param tasks TaskList
      */
     public void readList(TaskList tasks) {
+        showLine();
         System.out.println("Here are the tasks in your list: ");
         System.out.println(tasks);
         showLine();
@@ -105,6 +108,7 @@ public class Ui {
      * @param errorMsg DukeException e.getMessage()
      */
     public void showError(String errorMsg) {
+        showLine();
         System.out.println("Your error message: " + errorMsg);
         showLine();
     }
@@ -114,6 +118,7 @@ public class Ui {
      * Calls by run method in Duke class.
      */
     public void showLoadingError() {
+        showLine();
         System.out.println("Loading Error!");
         showLine();
     }
@@ -124,6 +129,7 @@ public class Ui {
      * @param tasks TaskList of tasks with keyword.
      */
     public void showMatches(TaskList tasks) {
+        showLine();
         System.out.println("Here are the matching task(s) in your list: ");
         System.out.println(tasks);
         showLine();
