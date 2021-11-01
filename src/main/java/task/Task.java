@@ -1,5 +1,10 @@
 package task;
 
+import datetime.DateTime;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Abstract class which all other Task classes extend (Event, deadline etc.).
  */
@@ -34,7 +39,7 @@ public abstract class Task {
 
     /**
      * Calls in toString method. Indicates status of completion of task.
-     * @return tick if done, else cross.
+     * @return //+ if done, else -
      */
     public String getStatus() {
         return (isDone ? "+" : "-");

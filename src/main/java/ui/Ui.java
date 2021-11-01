@@ -106,4 +106,14 @@ public class Ui {
         System.out.println("Here are the matching task(s) in your list: ");
         System.out.println(tasks);
     }
+
+    /**
+     * Displays tasks in the form of a schedule e.g., view the schedule for a specific date
+     * Calls when execute method of ViewScheduleCommand is called.
+     * @param tasks TaskList of tasks with schedule.
+     */
+    public void showSchedule(TaskList tasks) {
+        System.out.println("Here is the schedule for the list of task(s) on the mentioned date: ");
+        System.out.println(tasks);
+    }
 }

@@ -15,7 +15,8 @@ public enum FullCommand {
     DONE("done"),
     DELETE("delete"),
     BYE("bye"),
-    FIND("find");
+    FIND("find"),
+    VIEW("view");
 
     private String activityName;
 

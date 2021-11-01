@@ -53,7 +53,7 @@ public class DialogBox extends HBox {
     /**
      * Retrieves font.
      */
-    public void getFont(String fontName) {
+    public void getFont(String fontName, int size) {
         InputStream is = Main.class.getResourceAsStream(fontName);
         Font font =  Font.loadFont(getClass().getResourceAsStream(fontName), 20);
         this.dialog.setFont(font);
@@ -64,7 +64,7 @@ public class DialogBox extends HBox {
      */
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-        db.getFont("/fonts/DraftGothic.ttf");
+        db.getFont("/fonts/DraftGothic.ttf", 25);
         return db;
     }
 
@@ -74,7 +74,7 @@ public class DialogBox extends HBox {
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
-        db.getFont("/fonts/UniversCondensed.ttf");
+        db.getFont("/fonts/UniversCondensed.ttf", 18);
         return db;
     }
 }
