@@ -142,6 +142,30 @@ public class TaskList {
         }
         return output.substring(0, output.length() - 1);
     }
+
+    /**
+     * Resets the entire list and start fresh.
+     */
+    public void reset() {
+        taskList = new ArrayList<Task>();
+    }
+
+    /**
+     * Converts data in taskList to the appropriate String format to be stored in text file.
+     * @return String text.
+     */
+    public String toText() {
+        String output = "";
+        if (taskNum != 0) {
+            for (int index = 0; index < taskNum; index++) {
+                Task task = getTask(index);
+                output += (task.toString() + "\n");
+            }
+            return output.substring(0, output.length() - 1);
+        } else {
+            return output;
+        }
+    }
 }
 
 

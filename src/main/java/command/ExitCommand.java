@@ -11,7 +11,7 @@ public class ExitCommand extends Command {
      * Ends program.
      */
     public ExitCommand() {
-        this.type = FullCommand.BYE;
+        super.type = FullCommand.BYE;
     }
 
     /** Uses by Duke class method run to check for exit command and terminate program if exit command is found.
@@ -30,6 +30,6 @@ public class ExitCommand extends Command {
      * @throws DukeException if invalid filepath (Directory tampered with when program is running).
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        storage.closeWriter();
+        storage.write(tasks);
     }
 }

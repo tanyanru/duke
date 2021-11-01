@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import java.io.InputStream;
+import javafx.scene.text.Font;
 
 /**
  * An example of a custom control using FXML.
@@ -48,8 +50,22 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Retrieves font.
+     */
+    public void getFont(String fontName) {
+        InputStream is = Main.class.getResourceAsStream(fontName);
+        Font font =  Font.loadFont(getClass().getResourceAsStream(fontName), 20);
+        this.dialog.setFont(font);
+    }
+
+    /**
+     * Method to retrieve font for user dialog.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var db = new DialogBox(text, img);
+        db.getFont("/fonts/DraftGothic.ttf");
+        return db;
     }
 
     /**
@@ -58,6 +74,7 @@ public class DialogBox extends HBox {
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        db.getFont("/fonts/UniversCondensed.ttf");
         return db;
     }
 }

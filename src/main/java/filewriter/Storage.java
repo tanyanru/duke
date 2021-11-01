@@ -7,14 +7,14 @@ import task.Event;
 import task.Task;
 import task.TaskList;
 import task.Todo;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.io.IOException;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,80 +30,27 @@ public class Storage {
 
     /**
      * Constructor of Storage object.
-     * @param filepath filepath to text file to be read from and edited.
+     * @param filePath filepath to text file to be read from and edited.
      * @throws DukeException When CreateWriter throws DukeException.
      */
-    public Storage(String filepath) throws DukeException {
-        this.filePath = filepath;
-        this.createWriter();
+    public Storage(String filePath) throws DukeException {
+        this.filePath = filePath;
     }
 
     /**
      * Creates FileWriter member fw.
      * @throws DukeException when invalid filepath.
      */
-    private void createWriter() throws DukeException {
+    public void write(TaskList schedule) throws DukeException {
         try {
-            fw = new FileWriter(filePath, isAppend);
-        } catch (IOException e) {
-            throw new DukeException("\n Invalid filepath. Please check.");
-        }
-    }
-
-    /**
-     * Wrapper to close FileWriter fw.
-     * Uses in Execute method of ExitCommand object.
-     * @throws DukeException when invalid filepath.
-     */
-    public void closeWriter() throws DukeException {
-        try {
+            File text = new File(filePath);
+            text.getParentFile().mkdirs();
+            fw = new FileWriter(text, false);
+            fw.write(schedule.toText());
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("\n Invalid filepath. Please check.");
+            throw new DukeException("Error creating fileWriter");
         }
-    }
-
-    /**
-     * Adds Task to TaskList data stored in txt file.
-     * Calls during execute method of addCommand object.
-     * @param textToAdd (Command Object).to String();
-     * @throws DukeException Throws when IOException is caught.
-     */
-    public void writeToFile(String textToAdd) throws DukeException {
-        try {
-            fw.write(textToAdd + "\n");
-            //System.out.println(textToAdd);
-        } catch (IOException e) {
-            throw new DukeException("\n Please check. Error message: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Rewrites data in txt file with editions made.
-     * Calls when Execute command of DeleteCommand or EditCommand object modifies TaskList.
-     * @param schedule Modifies contents of TaskList.
-     * @throws DukeException Throws when IOException is caught.
-     */
-    public void editFile(TaskList schedule) throws DukeException {
-        try {
-            checkAppend(false);
-            for (Task task: schedule.getList()) {
-                fw.write(task.toString() + "\n");
-            }
-        } catch (IOException e) {
-            throw new DukeException("failed to write to file");
-        }
-    }
-
-    /**
-     * Toggles willAppend boolean, which determines if FileWriter fw will append to txt file or overwrite it.
-     * @param toAppend New boolean value of toAppend.
-     * @throws DukeException Throws when createWriter throws DukeException.
-     */
-    private void checkAppend(boolean toAppend) throws DukeException {
-        closeWriter();
-        isAppend = toAppend;
-        createWriter();
     }
 
     /**
@@ -146,7 +93,7 @@ public class Storage {
     }
 
     private void updateStatus(Task task, String line) {
-        if (line.substring(2,4).equals("+")) {
+        if (line.substring(4,5).equals("+")) {
             task.markAsDone();
         }
     }
@@ -159,9 +106,12 @@ public class Storage {
     public Storage load() throws DukeException {
         try {
             taskList = new ArrayList<>();
-            File f = new File(filePath); // create a File for the given file path
-            Scanner s = new Scanner(f); // create a Scanner using the File as the source
-            Stream<String> stream = Files.lines(Paths.get(filePath));
+            File text = new File(filePath);
+            text.createNewFile();
+            text.getParentFile().mkdirs();
+            BufferedReader reader = new BufferedReader(new FileReader(text));
+            Stream<String> stream
+                    = reader.lines();
             taskList = new ArrayList(stream.filter(line -> !line.equals(""))
                     .map(line -> {
                         try {
@@ -174,7 +124,6 @@ public class Storage {
         } catch (FileNotFoundException e) {
             throw new DukeException("File not found! \n ");
         } catch (IOException e) {
-            e.printStackTrace();
             return null;
         } catch (Exception e) {
             throw new DukeException("Unexpected Error: " + e.getMessage());

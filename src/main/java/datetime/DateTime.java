@@ -71,8 +71,8 @@ public class DateTime {
                     + eventDateTime.endDateTime.format(getTime);
             return eventDateTime;
         } catch (DateTimeParseException e) {
-            throw new DukeException("Incorrect event format. "
-                    + "\n Please key in event (details) /at d/mm/yyyy (start time)HHmm-(end time)HHmm");
+            throw new DukeException("Incorrect event format."
+                    + "\nPlease key in event (details) /at d/mm/yyyy (start time)HHmm-(end time)HHmm");
         }
     }
 
@@ -93,8 +93,8 @@ public class DateTime {
         String end = dateTime.substring(divider + 1, dateTime.length());
         eventDateTime.startDateTime = LocalDateTime.parse(dateTime.substring(0,divider), getStartDateTime);
         eventDateTime.endDateTime = LocalTime.parse(end, DateTimeFormatter.ofPattern("HHmm"));
-        eventDateTime.displayDateTime = eventDateTime.startDateTime.format(getStartDateTime) + "-"
-                + eventDateTime.endDateTime.format(getTime);
+        eventDateTime.displayDateTime = (eventDateTime.startDateTime.format(getStartDateTime) + "-"
+                + eventDateTime.endDateTime.format(getTime));
         return eventDateTime;
     }
 

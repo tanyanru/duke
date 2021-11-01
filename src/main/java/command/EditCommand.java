@@ -42,7 +42,6 @@ public class EditCommand extends Command {
             }
             Task completedTask = tasks.complete(index);
             ui.readDone(completedTask);
-            storage.editFile(tasks);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw new DukeException("Index out of bounds.");
         } catch (NumberFormatException e) {

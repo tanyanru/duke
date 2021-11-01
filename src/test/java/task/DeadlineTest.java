@@ -10,13 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class DeadlineTest {
+
     @Test
-    void constructor_noDate_exceptionThrown(){
-        try{
+    void constructor_noDate_exceptionThrown() {
+        try {
             Deadline deadline = new Deadline("Generate Exception /by");
             fail();
-        }catch (DukeException e){
-            String expectedOutput = "Incorrect deadline format. \nPlease key in deadline (task) /by d/mm/yyyy HHmm";
+        } catch (DukeException e) {
+            String expectedOutput = "Incorrect deadline format.\nPlease key in deadline (task) /by d/mm/yyyy HHmm";
             assertEquals(expectedOutput, e.getMessage());
         }
     }
