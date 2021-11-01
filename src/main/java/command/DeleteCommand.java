@@ -41,7 +41,6 @@ public class DeleteCommand extends Command {
         try {
             Task removeTask = tasks.remove(index);
             ui.readDelete(removeTask, tasks.taskNum);
-            storage.editFile(tasks);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw new DukeException("Index out of bounds.");
         } catch (NumberFormatException e) {
