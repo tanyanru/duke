@@ -18,6 +18,7 @@ public class ExitCommand extends Command {
      * @return true as command is ExitCommand.
      */
     public boolean isExit() {
+        assert (super.type.getActivityName().equals("bye"));
         return true;
     }
 

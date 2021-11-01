@@ -30,6 +30,7 @@ public class AddCommand extends Command {
      * @return false as command will be AddCommand.
      */
     public boolean isExit() {
+        assert (!super.type.getActivityName().equals("bye"));
         return false;
     }
 
