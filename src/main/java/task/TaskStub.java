@@ -10,7 +10,7 @@ public class TaskStub extends Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718"); //tick if done, else cross
+        return (isDone ? "+" : "-"); //+ if done, else -
     }
 
     public void markAsDone() {

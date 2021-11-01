@@ -8,6 +8,7 @@ import command.ExitCommand;
 import command.FindCommand;
 import command.FullCommand;
 import command.ListCommand;
+import command.ViewScheduleCommand;
 import exception.DukeException;
 
 /**
@@ -35,14 +36,18 @@ public class Parser {
                 return new DeleteCommand(Integer.parseInt(arr[1]) - 1);
             case FIND:
                 return new FindCommand(arr[1]);
+            case VIEW:
+                return new ViewScheduleCommand(arr[1]);
             default:
                 if (arr[1].equals("")) {
                     throw new DukeException("");
                 }
                 return new AddCommand(command, arr[1]);
             }
-        } catch (IndexOutOfBoundsException | DukeException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Please provide commands in the format: (command type) (task details)");
+        }  catch (NumberFormatException e) {
+            throw new DukeException("command 'done' and 'delete' must be followed by an integer index.");
         }
     }
 }

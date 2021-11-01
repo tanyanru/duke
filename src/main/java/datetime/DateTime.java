@@ -13,8 +13,8 @@ import java.time.format.DateTimeParseException;
 @SuppressWarnings("checkstyle:SummaryJavadoc")
 public class DateTime {
     private LocalTime endDateTime;
-    private LocalDateTime startDateTime;
-    private String displayDateTime;
+    public LocalDateTime startDateTime;
+    public String displayDateTime;
     private static DateTimeFormatter getTime = DateTimeFormatter.ofPattern("HHmm");
     private static DateTimeFormatter getStartDateTime = DateTimeFormatter.ofPattern("d/MM/yyyy HHmm");
 
