@@ -23,6 +23,7 @@ public class ListCommand extends Command {
      * @return ConstructorCommand is not ExitCommand.
      */
     public boolean isExit() {
+        assert (!super.type.getActivityName().equals("bye"));
         return false;
     }
 

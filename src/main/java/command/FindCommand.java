@@ -28,6 +28,7 @@ public class FindCommand extends Command {
      * @return false.
      */
     public boolean isExit() {
+        assert (!super.type.getActivityName().equals("bye"));
         return false;
     }
 
