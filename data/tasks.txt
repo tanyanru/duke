@@ -1,2 +1,4 @@
 [D][-] sleeping (by: 2/02/2022 1900)
-[T][-] sleeping game eat play
+[T][+] sleeping game eat play
+[T][+] game
+[E][-] cityhall (at: 2/02/2022 1300-1900)

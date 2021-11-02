@@ -11,16 +11,16 @@ import java.time.format.DateTimeFormatter;
 public abstract class Task {
     protected String taskDesc;
     protected boolean isDone;
-    protected boolean deleted;
+    protected boolean isDeleted;
 
     /**
-     *Constructor method of Task.
+     * Constructor method of Task.
      * @param taskDesc contains information of Task, includes task name and may include date and time.
      */
     public Task(String taskDesc) {
         this.taskDesc = taskDesc;
         this.isDone = false;
-        this.deleted = false;
+        this.isDeleted = false;
     }
 
     /**

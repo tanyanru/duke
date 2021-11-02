@@ -24,7 +24,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * FindCommand is not a ExitCommand.
+     * Checks if it is an ExitCommand.
      * @return false.
      */
     public boolean isExit() {
