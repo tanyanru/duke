@@ -60,16 +60,16 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Method to retrieve font for user dialog.
+     * Gets the dialog box.
      */
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-        db.getFont("/fonts/DraftGothic.ttf", 25);
+        db.getFont("/fonts/Frizq.ttf", 25);
         return db;
     }
 
     /**
-     * To get the dialog box.
+     * Gets the dialog box.
      */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);

@@ -3,10 +3,6 @@ package task;
 import datetime.DateTime;
 import exception.DukeException;
 
-/**
- * toString method of DeadLine.
- * @return String denoting task name, status date and time of Deadline task.
- */
 public class Event extends Task {
     DateTime dateTime;
 

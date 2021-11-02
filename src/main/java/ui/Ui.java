@@ -1,5 +1,6 @@
 package ui;
 
+import command.ViewScheduleCommand;
 import task.Task;
 import task.TaskList;
 
