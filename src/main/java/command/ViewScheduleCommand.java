@@ -42,19 +42,26 @@ public class ViewScheduleCommand extends Command {
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> shortlist = new ArrayList<>();
-        for (Task task : tasks.getList()) {
-            if (schedule.equals("all")) {
-                if (task.toString().contains("/")) {
+        try {
+            for (Task task : tasks.getList()) {
+                if (schedule.equals("all")) {
+                    if (task.toString().contains("/")) {
+                        shortlist.add(task);
+                    }
+                } else if (task.toString().contains(schedule)) {
                     shortlist.add(task);
                 }
-            } else if (task.toString().contains(schedule)) {
-                shortlist.add(task);
             }
-        }
-        if (schedule.equals("all")) {
-            ui.showAllSchedule(new TaskList(shortlist));
-        } else {
-            ui.showSchedule(new TaskList(shortlist));
+            if (schedule.equals("all")) {
+                ui.showAllSchedule(new TaskList(shortlist));
+            } else {
+                ui.showSchedule(new TaskList(shortlist));
+            }
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
+            throw new DukeException("You do not have any tasks in the mentioned schedule.");
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please enter the schedule "
+                    + "(i.e. specific date) that you wish to search in the list.");
         }
     }
 }
