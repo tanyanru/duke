@@ -41,7 +41,8 @@ public class DateTimeTest {
             fail();
         } catch (DukeException e) {
             assertEquals("Incorrect event format.\n"
-                    + "Please key in event (details) /at (date)d/mm/yyyy (start time)HHmm-(end time)HHmm.", e.getMessage());
+                    + "Please key in event (details) /at (date)d/mm/yyyy "
+                    + "(start time)HHmm-(end time)HHmm.", e.getMessage());
         }
     }
 

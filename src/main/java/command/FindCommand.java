@@ -41,11 +41,17 @@ public class FindCommand extends Command {
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> shortlist = new ArrayList<>();
-        for (Task task: tasks.getList()) {
-            if (task.findWord(keyword)) {
-                shortlist.add(task);
+        try {
+            for (Task task : tasks.getList()) {
+                if (task.findWord(keyword)) {
+                    shortlist.add(task);
+                }
             }
+            ui.showMatches(new TaskList(shortlist));
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
+            throw new DukeException("No such keyword in the task list. Please try again. ");
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please enter the keyword that you wish to search in the list.");
         }
-        ui.showMatches(new TaskList(shortlist));
     }
 }
