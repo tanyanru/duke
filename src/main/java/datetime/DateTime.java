@@ -34,7 +34,7 @@ public class DateTime {
             return deadlineDateTime;
         } catch (DateTimeParseException e) {
             throw new DukeException("Incorrect deadline datetime format."
-                    + "\nPlease key in deadline (task) /by d/MM/yyyy HHmm");
+                    + "\nPlease key in deadline (details) /by (date)d/mm/yyyy (time)HHmm.");
         }
     }
 
@@ -73,7 +73,7 @@ public class DateTime {
             return eventDateTime;
         } catch (DateTimeParseException e) {
             throw new DukeException("Incorrect event format."
-                    + "\nPlease key in event (details) /at d/mm/yyyy (start time)HHmm-(end time)HHmm");
+                    + "\nPlease key in event (details) /at (date)d/mm/yyyy (start time)HHmm-(end time)HHmm.");
         }
     }
 

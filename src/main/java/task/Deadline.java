@@ -19,7 +19,8 @@ public class Deadline extends Task {
         int divider = description.indexOf("/by");
         if (divider == -1 || (divider == description.length() - 3)
                 || description.substring(divider + 4).replace(" ", "").equals("")) {
-            throw new DukeException("Incorrect deadline format.\nPlease key in deadline (task) /by d/mm/yyyy HHmm");
+            throw new DukeException("Incorrect deadline format.\nPlease key in deadline (task) "
+                    + "/by (date)d/mm/yyyy (time)HHmm.");
         }
         dateTime = DateTime.setDeadline(description.substring(divider + 4, description.length()));
         super.taskDesc = super.taskDesc.substring(0,divider);

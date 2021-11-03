@@ -17,7 +17,7 @@ public class DeadlineTest {
             Deadline deadline = new Deadline("Generate Exception /by");
             fail();
         } catch (DukeException e) {
-            String expectedOutput = "Incorrect deadline format.\nPlease key in deadline (task) /by d/mm/yyyy HHmm";
+            String expectedOutput = "Incorrect deadline format.\nPlease key in deadline (task) /by (date)d/mm/yyyy (time)HHmm.";
             assertEquals(expectedOutput, e.getMessage());
         }
     }

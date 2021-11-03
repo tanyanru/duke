@@ -2,8 +2,6 @@ package task;
 
 import exception.DukeException;
 import filewriter.Storage;
-import task.Task;
-
 import java.util.ArrayList;
 
 /**

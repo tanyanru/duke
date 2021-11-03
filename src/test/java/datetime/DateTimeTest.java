@@ -14,7 +14,7 @@ public class DateTimeTest {
             fail();
         } catch (DukeException e) {
             assertEquals("Incorrect deadline datetime format.\n"
-                    + "Please key in deadline (task) /by d/MM/yyyy HHmm", e.getMessage());
+                    + "Please key in deadline (details) /by (date)d/mm/yyyy (time)HHmm.", e.getMessage());
         }
     }
 
@@ -41,7 +41,7 @@ public class DateTimeTest {
             fail();
         } catch (DukeException e) {
             assertEquals("Incorrect event format.\n"
-                    + "Please key in event (details) /at d/mm/yyyy (start time)HHmm-(end time)HHmm", e.getMessage());
+                    + "Please key in event (details) /at (date)d/mm/yyyy (start time)HHmm-(end time)HHmm.", e.getMessage());
         }
     }
 

@@ -17,7 +17,7 @@ public class Event extends Task {
         if (divider == -1 || (divider == description.length() - 3)
                 || description.substring(divider + 4).replace(" ", "").equals("")) {
             throw new DukeException("Incorrect event format.\n"
-                                + "Please key in event (details) /at d/mm/yyyy (start time)HHmm-(end time)HHmm");
+                                + "Please key in event (details) /at (date)d/mm/yyyy (start time)HHmm-(end time)HHmm.");
         }
         dateTime = DateTime.setEventTime(description.substring(divider + 4, description.length()));
         super.taskDesc = super.taskDesc.substring(0,divider);

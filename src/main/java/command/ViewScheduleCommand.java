@@ -1,9 +1,7 @@
 package command;
 
-import datetime.DateTime;
 import exception.DukeException;
 import filewriter.Storage;
-import task.Deadline;
 import task.Task;
 import task.TaskList;
 import ui.Ui;
@@ -44,7 +42,7 @@ public class ViewScheduleCommand extends Command {
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> shortlist = new ArrayList<>();
-        for (Task task: tasks.getList()) {
+        for (Task task : tasks.getList()) {
             if (schedule.equals("all")) {
                 if (task.toString().contains("/")) {
                     shortlist.add(task);
@@ -53,6 +51,10 @@ public class ViewScheduleCommand extends Command {
                 shortlist.add(task);
             }
         }
-        ui.showSchedule(new TaskList(shortlist));
+        if (schedule.equals("all")) {
+            ui.showAllSchedule(new TaskList(shortlist));
+        } else {
+            ui.showSchedule(new TaskList(shortlist));
+        }
     }
 }
