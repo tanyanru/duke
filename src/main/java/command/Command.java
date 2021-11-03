@@ -8,7 +8,6 @@ import ui.Ui;
 /**
  * Abstract class for all other command classes to extend to (e.g. DeleteCommand, etc.), except FulLCommand enum.
  */
-@SuppressWarnings("checkstyle:LineLength")
 public abstract class Command {
     FullCommand type;
 
@@ -28,6 +27,5 @@ public abstract class Command {
      * @throws DukeException Various subclass of Command may throw DukeException when
      *                       executed with invalid specification.
      */
-    @SuppressWarnings("checkstyle:LineLength")
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 }

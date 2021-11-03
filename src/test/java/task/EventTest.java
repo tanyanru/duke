@@ -13,7 +13,7 @@ public class EventTest {
             fail();
         } catch (DukeException e) {
             String expectedOutput = "Incorrect event format.\n"
-                    + "Please key in event (details) /at d/mm/yyyy (start time)HHmm-(end time)HHmm";
+                    + "Please key in event (details) /at (date)d/mm/yyyy (start time)HHmm-(end time)HHmm.";
             assertEquals(expectedOutput, e.getMessage());
         }
     }

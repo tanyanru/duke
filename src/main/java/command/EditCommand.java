@@ -43,9 +43,10 @@ public class EditCommand extends Command {
             Task completedTask = tasks.complete(index);
             ui.readDone(completedTask);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
-            throw new DukeException("Index out of bounds.");
+            throw new DukeException("The task number is not in the list. Please enter 'list' to check the task number "
+                    + "that you have completed.");
         } catch (NumberFormatException e) {
-            throw new DukeException("Please enter the task number that you would like to delete.");
+            throw new DukeException("Please enter the task number that you have completed.");
         }
     }
 }

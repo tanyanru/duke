@@ -64,7 +64,7 @@ public class DialogBox extends HBox {
      */
     public static DialogBox getUserDialog(String text, Image img) {
         var db = new DialogBox(text, img);
-        db.getFont("/fonts/Frizq.ttf", 25);
+        db.getFont("/fonts/AidaSerifaCondensed.ttf", 20);
         return db;
     }
 
@@ -74,7 +74,7 @@ public class DialogBox extends HBox {
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
-        db.getFont("/fonts/UniversCondensed.ttf", 18);
+        db.getFont("/fonts/UniversCondensed.ttf", 20);
         return db;
     }
 }

@@ -41,9 +41,10 @@ public class ListCommand extends Command {
             }
             ui.readList(tasks);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
-            throw new DukeException("Index out of bounds.");
+            throw new DukeException("You have 0 task in the list.");
         } catch (NumberFormatException e) {
-            throw new DukeException("Please enter the task number that you would like to delete.");
+            throw new DukeException("Please provide commands in the format: (command type) (task details). "
+                    + "For more information, please type 'instruction'.");
         }
     }
 }

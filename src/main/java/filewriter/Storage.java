@@ -7,7 +7,6 @@ import task.Event;
 import task.Task;
 import task.TaskList;
 import task.Todo;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -49,7 +48,7 @@ public class Storage {
             fw.write(schedule.toText());
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("Error creating fileWriter");
+            throw new DukeException("Error creating file writer");
         }
     }
 

@@ -35,7 +35,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         VBox.setVgrow(scrollPane, javafx.scene.layout.Priority.ALWAYS);
         dialogContainer.getChildren().addAll(DialogBox.getDukeDialog("Hello! I'm Duke. "
-                + "What can I do for you?", dukeImage));
+                + "How may I help you?", dukeImage));
     }
 
     public void setDuke(Duke d) {

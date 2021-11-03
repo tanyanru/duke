@@ -70,7 +70,7 @@ public class Ui {
      * @param tasks TaskList
      */
     public void readList(TaskList tasks) {
-        System.out.println("Here are the tasks in your list: ");
+        System.out.println("Here are the task(s) in your list: ");
         System.out.println(tasks);
     }
 
@@ -116,5 +116,33 @@ public class Ui {
     public void showSchedule(TaskList tasks) {
         System.out.println("Here is the schedule for the list of task(s) on the mentioned date: ");
         System.out.println(tasks);
+    }
+
+    /**
+     * Displays all tasks with schedule.
+     * Calls when execute method of ViewScheduleCommand is called.
+     * @param tasks TaskList of tasks with schedule.
+     */
+    public void showAllSchedule(TaskList tasks) {
+        System.out.println("Here is the list of task(s) that has schedule: ");
+        System.out.println(tasks);
+    }
+
+    /**
+     * Displays the full set of instructions to the user so that user able to see all commands available in one view.
+     */
+    public void readInstruction() {
+        System.out.println("This is the list of commands available currently. Please replace the details in ().");
+        System.out.println("\n1. todo (details)");
+        System.out.println("\n2. deadline (details) /by (date)d/mm/yyyy (time)HHmm.");
+        System.out.println("\n3. event (details) /at (date)d/mm/yyyy (start time)HHmm-(end time)HHmm.");
+        System.out.println("\n4. list -- This will show the list of tasks you have on hand.");
+        System.out.println("\n5. done (Key in the index number of the task that you have completed).");
+        System.out.println("\n6. delete (Key in the index number of the task that you wish to delete).");
+        System.out.println("\n7. find (Key in the keyword that you wish to search in the list of the task).");
+        System.out.println("\n8. view (Key in the specific date to view the tasks you have in the schedule).");
+        System.out.println("\n9. view all -- This will display all the tasks with schedule.");
+        System.out.println("\n10. bye -- To close off the application and save the tasks in tasks.txt file.");
+        System.out.println("\nHope this helps!");
     }
 }
